@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./config/db");
+const middleware = require("./middleware/middewares");
 
 db()
   .then(() => {
@@ -10,6 +11,8 @@ db()
     console.log(err);
     process.exit(1);
   });
+
+middleware(app);
 
 const users = require("./routes/users");
 const admins = require("./routes/admin");
